@@ -28,13 +28,13 @@ export const mockData = {
       description: '바나나는 길다.',
       english: 'Banana',
       id: 2,
-      korean: '바나',
+      korean: '바나나',
       modifiedDate: '2020-07-17',
       url:
         'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
     },
     {
-      color: 'mud',
+      color: 'teal_blue',
       createdDate: '2020-07-17',
       description: '오렌지는 둥글다.',
       english: 'Orange',
@@ -45,7 +45,7 @@ export const mockData = {
         'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
     },
     {
-      color: 'mud',
+      color: 'dark_green_blue',
       createdDate: '2020-07-18',
       description: '개발은 힘들어유',
       english: 'Development',
@@ -56,11 +56,66 @@ export const mockData = {
         'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
     },
     {
-      color: 'mud',
+      color: 'bluish_pruple',
       createdDate: '2020-07-19',
       description: '사업도 힘들어..',
       english: 'Business',
       id: 6,
+      korean: '경영',
+      modifiedDate: '2020-07-20',
+      url:
+        'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
+    },
+    {
+      color: 'purple',
+      createdDate: '2020-07-17',
+      description: '오렌지는 둥글다.',
+      english: 'Orange',
+      id: 7,
+      korean: '오렌지',
+      modifiedDate: '2020-07-17',
+      url:
+        'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
+    },
+    {
+      color: 'mud',
+      createdDate: '2020-07-18',
+      description: '개발은 힘들어유',
+      english: 'Development',
+      id: 8,
+      korean: '개발',
+      modifiedDate: '2020-07-19',
+      url:
+        'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
+    },
+    {
+      color: 'bluish_pruple',
+      createdDate: '2020-07-19',
+      description: '사업도 힘들어..',
+      english: 'Business',
+      id: 9,
+      korean: '경영',
+      modifiedDate: '2020-07-20',
+      url:
+        'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
+    },
+    {
+      color: 'bluish_pruple',
+      createdDate: '2020-07-20',
+      description: '개발은 힘들어유',
+      english: 'Development',
+      id: 10,
+      korean: '개발',
+      modifiedDate: '2020-07-21',
+      url:
+        'https://www.apple.com/kr/?afid=p238%7CsO8L3jewZ-dc_mtid_18707vxu38484_pcrid_438004354762_pgrid_16348496961_&cid=aos-kr-kwgo-Brand--slid---product--',
+    },
+    {
+      color: 'teal_blue',
+      createdDate: '2020-07-20',
+      description: '사업도 힘들어..',
+      english: 'Business',
+      id: 11,
       korean: '경영',
       modifiedDate: '2020-07-20',
       url:

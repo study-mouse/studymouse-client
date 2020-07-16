@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   teal_blue: '#00a7a0',
   dark_green_blue: '#134b49',
   bluish_pruple: '#8025fe',
