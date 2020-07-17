@@ -1,64 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import searchIcon from '../assets/search.png';
+import { fontDefault } from '../constants/styles';
+import * as styles from '../constants/styles';
 
 const Navbar = styled.div`
   display: flex;
-  height: 6rem;
+  height: 5rem;
 
-  background-color: #1a1a1a;
+  background-color: ${styles.colors['dark_black']};
+  border-bottom: 1px solid #333333;
 `;
 
-const ServiceName = styled.div`
+const ServiceName = styled(fontDefault)`
   display: flex;
   align-items: center;
-  padding-left: 3rem;
+  margin: 0 5rem 0 3rem;
 
   font-size: 20px;
   font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.45;
-  letter-spacing: normal;
-  font-family: NotoSansCJKkr;
   color: white;
 `;
 
-const SearchInput = styled.input`
-  width: 25rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  margin: auto 0 auto 5rem;
-
-  border: solid 1px #333333;
-  background-color: black;
-  color: white;
+const PageName = styled(fontDefault)`
+  margin: auto 2rem;
   font-size: 20px;
-  padding-left: 1rem;
-
-  :focus {
-    outline: none;
-  }
-`;
-
-const SearchIcon = styled.img`
-  width: 2rem;
-  height: 2rem;
-  margin: auto 0 auto -3rem;
+  font-weight: 900;
+  color: ${(props) =>
+    props.selected ? styles.colors['white'] : styles.colors['brown_grey']};
+  text-decoration: ${(props) => (props.selected ? 'underline' : 'none')};
 `;
 
 const Header = () => {
-  const [state, setState] = useState('');
   return (
     <Navbar>
       <ServiceName>스터디마우스</ServiceName>
-      <SearchInput
-        type="text"
-        onChange={(e) => {
-          setState(e.target.value);
-        }}
-      />
-      <SearchIcon src={searchIcon} alt="search" onClick={() => alert(state)} />
+      <PageName selected={true}>Word</PageName>
+      <PageName selected={false}>Archived</PageName>
     </Navbar>
   );
 };

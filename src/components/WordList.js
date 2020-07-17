@@ -2,25 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import WordItem from './WordItem';
 import * as styles from '../constants/styles';
+import { fontDefault } from '../constants/styles';
 
 const Wrapper = styled.div`
   color: white;
   font-size: 20px;
-  padding: 0.5rem 0;
+  padding: 1.2rem 1rem;
+  border-radius: 10px;
 `;
 
-const Criteria = styled.div`
+const CriteriaSection = styled.div`
+  margin-bottom: 0.75rem;
+`;
+
+const Criteria = styled(fontDefault)`
   padding-left: 0.5rem;
 
   color: ${(props) =>
     props.latest ? styles.colors['white'] : styles.colors['brown_grey']};
-  font-size: 20px;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.45;
-  letter-spacing: normal;
-  font-family: NotoSansCJKkr;
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 const WordList = ({ sortedData }) => {
@@ -35,16 +36,14 @@ const WordList = ({ sortedData }) => {
       {Object.entries(sortedData).map(([key, value]) => {
         idx++;
         return (
-          <div key={key}>
-            <Criteria latest={idx === Object.keys(sortedData).length}>
-              {key}
-            </Criteria>
+          <CriteriaSection key={key}>
+            <Criteria latest={idx === 1}>{key}</Criteria>
             <div>
               {value.map((word) => {
-                return <WordItem wordInfo={word} key={word.id} />;
+                return <WordItem wordInfo={word} key={word.id} idx={idx} />;
               })}
             </div>
-          </div>
+          </CriteriaSection>
         );
       })}
     </Wrapper>
