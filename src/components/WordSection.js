@@ -4,6 +4,7 @@ import * as mock from '../constants/mockData';
 import WordList from './WordList';
 
 const WordWrapper = styled.div`
+  margin-top: 5rem;
   flex-basis: 40rem;
   flex-grow: 1;
   display: flex;

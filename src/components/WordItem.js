@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as styles from '../constants/styles';
 import { fontDefault } from '../constants/styles';
+import { regexpUrl } from '../utils/index';
 
 const Wrapper = styled.div`
   display: inline-flex;
@@ -30,18 +31,19 @@ const KoreanWord = styled(fontDefault)`
   margin-bottom: 0.75rem;
 `;
 
-const UrlInfo = styled(fontDefault)`
-  font-size: 12px;
-  text-overflow: ellipsis;
-  width: 7rem;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-bottom: 1rem;
+const HoverSection = styled.div`
+  height: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const LinkTag = styled.a`
+  font-size: 12px;
+  text-overflow: ellipsis;
+  width: 5rem;
   text-decoration: none;
-  opacity: 0.7;
   :visited {
     text-decoration: none;
     color: ${styles.colors['white']};
@@ -56,21 +58,11 @@ const LinkTag = styled.a`
   }
 `;
 
-const HoverSection = styled.div`
-  height: 1.2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  ${Wrapper}:hover & {
-    display: none;
-    transition: 0.5s;
-  }
-`;
-
 const ArchiveBtn = styled.button`
   width: 3.6rem;
   height: 1.2rem;
   font-size: 12px;
+  margin-right: 5px;
 
   font-family: NotoSansCJKkr;
   font-stretch: normal;
@@ -92,31 +84,32 @@ const ArchiveBtn = styled.button`
   }
 `;
 
-const DeleteBtn = styled(fontDefault)`
-  font-size: 12px;
-  color: white;
-  opacity: 0.7;
-  :hover {
+const DeleteBtn = styled.img`
+  width: 14px;
+  height: 14px;
+  &:hover {
     cursor: pointer;
   }
-  text-decoration: underline;
+`;
+
+const BtnGroup = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const WordItem = ({ wordInfo, idx }) => {
-  console.log(wordInfo);
-  console.log(1);
   return (
     <Wrapper color={wordInfo.color} idx={idx}>
       <EnglishWord>{wordInfo.english}</EnglishWord>
       <KoreanWord>{wordInfo.korean}</KoreanWord>
-      <UrlInfo>
-        <LinkTag href={wordInfo.url} target="_blank">
-          {wordInfo.url}
-        </LinkTag>
-      </UrlInfo>
       <HoverSection>
-        <ArchiveBtn>Archive</ArchiveBtn>
-        <DeleteBtn>Delete</DeleteBtn>
+        <LinkTag href={wordInfo.url} target="_blank">
+          {regexpUrl(wordInfo.url)}
+        </LinkTag>
+        <BtnGroup>
+          <ArchiveBtn>Archive</ArchiveBtn>
+          <DeleteBtn src={require('../assets/bt_delete@3x.png')} />
+        </BtnGroup>
       </HoverSection>
     </Wrapper>
   );
