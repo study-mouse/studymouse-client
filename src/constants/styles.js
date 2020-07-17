@@ -1,10 +1,12 @@
+import styled from 'styled-components';
+
 export const colors = {
-  teal_blue: '#00a7a0',
-  dark_green_blue: '#134b49',
-  bluish_pruple: '#8025fe',
-  purple: '#4d1f8c',
+  green: '#00a7a0',
+  green_dark: '#134b49',
+  purple: '#8025fe',
+  purple_dark: '#4d1f8c',
   gold: '#e69d13',
-  mud: '#805c16',
+  gold_dark: '#805c16',
 
   white: '#ffffff',
   brown_grey: '#909090',
@@ -13,3 +15,11 @@ export const colors = {
   dark_black: '#1a1a1a',
   black: '#141414',
 };
+
+export const fontDefault = styled.div`
+  font-family: NotoSansCJKkr;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.45;
+  letter-spacing: normal;
+`;

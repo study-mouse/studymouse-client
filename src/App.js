@@ -3,7 +3,6 @@ import './App.css';
 import styled from 'styled-components';
 import Header from './components/Header';
 import WordSection from './components/WordSection';
-import WebsiteSection from './components/WebsiteSection';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -19,7 +18,6 @@ const App = () => {
       <Header />
       <Section>
         <WordSection />
-        <WebsiteSection />
       </Section>
     </Wrapper>
   );
