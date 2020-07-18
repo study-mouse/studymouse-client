@@ -5,9 +5,9 @@ export const actionType = {
 
 export const userActions = {};
 
-const makeActionCreator = (actionType) => {
-  return (payload) => ({ type: actionType, payload });
-};
+// const makeActionCreator = (actionType) => {
+//   return (payload) => ({ type: actionType, payload });
+// };
 
 export const getUserInfo = (payload) => ({
   type: actionType.GET_USERINFO,

@@ -1,4 +1,4 @@
-import { GET_USERINFO, GET_WORDLIST } from '../actions';
+import { actionType } from '../actions';
 import produce from 'immer';
 
 const INIT_STATE = {
@@ -15,12 +15,12 @@ const INIT_STATE = {
 
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_USERINFO:
+    case actionType.GET_USERINFO:
       return produce(state, (draftState) => {
         draftState.userInfo = action.payload;
         return draftState;
       });
-    case GET_WORDLIST:
+    case actionType.GET_WORDLIST:
       return produce(state, (draftState) => {
         draftState.wordList = action.payload;
         return draftState;
