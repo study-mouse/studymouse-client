@@ -3,16 +3,24 @@ import styled from 'styled-components';
 import { fontDefault } from '../constants/styles';
 import * as styles from '../constants/styles';
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
+  const handleSubmit = () => {
+    alert('Google login');
+    history.push('/');
+  };
   return (
     <Section>
       <Container>
         <TitleContainer>
           <TitleContent>Start Using</TitleContent>
           <TitleContent big>StudyMouse!</TitleContent>
+          <TitleContent small>Make your own voca-list</TitleContent>
+          <TitleContent small>
+            And archive through memorizing the word
+          </TitleContent>
         </TitleContainer>
         <GoogleLoginContainer>
-          <GoogleLoginButton onClick={() => alert('Google login')}>
+          <GoogleLoginButton onClick={() => handleSubmit()}>
             <img
               alt="googlelogo"
               src={
@@ -20,22 +28,28 @@ const LoginPage = () => {
               }
               style={{ height: 20, marginRight: 10 }}
             />
-            Login with Google
+            SignIn with Google
           </GoogleLoginButton>
         </GoogleLoginContainer>
+        <img
+          alt={'logingif'}
+          src={require('../assets/login.gif')}
+          style={{ width: '50%' }}
+        />
       </Container>
     </Section>
   );
 };
 
 const GoogleLoginContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 30px;
   padding: 10px;
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 const GoogleLoginButton = styled.button`
+  cursor: pointer;
   background-color: #fff4;
   display: flex;
   align-items: center;
@@ -60,7 +74,15 @@ const GoogleLoginButton = styled.button`
 `;
 
 const TitleContent = styled(fontDefault)`
-  font-size: ${(props) => (props.big ? '60px' : '40px')};
+  font-size: ${(props) => {
+    if (props.big) {
+      return '60px';
+    } else if (props.small) {
+      return '20px';
+    } else {
+      return '40px';
+    }
+  }};
   font-weight: 900;
 `;
 
