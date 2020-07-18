@@ -27,11 +27,6 @@ const Wrapper = styled.div`
   :nth-child(${(props) => props.cnt}n+${(props) => props.col}) {
     order: ${(props) => props.col}
   };
-  
-  &:hover ${BtnGroup} {
-    display: flex;
-  }
-}
 `;
 
 const Header = styled.div`
@@ -88,6 +83,8 @@ const LinkTag = styled.a`
   text-overflow: ellipsis;
   width: 5rem;
   text-decoration: none;
+  color: ${styles.colors['white']};
+
   :visited {
     text-decoration: none;
     color: ${styles.colors['white']};
