@@ -25,9 +25,9 @@ const Criteria = styled(fontDefault)`
 `;
 
 const Masonry = styled.div`
-  // TODO - breakpoint 잡아서 col갯수 계산하기
-  // display: flex;
-  // flex-flow: column wrap;
+  /* TODO: breakpoint 잡아서 col갯수 계산하기 */
+  /* display: flex;
+  flex-flow: column wrap; */
 `;
 
 const WordList = ({ sortedData }) => {

@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as styles from '../constants/styles';
 import { fontDefault } from '../constants/styles';
 import { regexpUrl } from '../utils/index';
-
-const BtnGroup = styled.div`
-  display: none;
-  align-items: center;
-`;
 
 const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   padding: 15px 16px;
   width: 12rem;
-  height: fit-content;
   margin: 1rem 1rem 1rem 0;
   border-radius: 20px;
   order: ${(props) => props.col};
@@ -33,38 +27,13 @@ const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const SelectColor = styled.div`
-  visibility: hidden;
-  width: 12px;
-  height: 12px;
-  border-radius: 8px;
-  border: 1px solid white;
-  background-color: ${(props) => styles.colors[`${props.color}`]};
-  margin-bottom: 4px;
-`;
-
-const ColorButton = styled.div`
-  width: 12px;
-  height: 12px;
-  border-radius: 8px;
-  border: 1px solid white;
-
-  :hover {
-    cursor: pointer;
-    bottom: 100px;
-    visibility: hidden;
-  }
-  &:hover ${SelectColor} {
-    visibility: visible;
-  }
+  align-items: center;
+  margin-bottom: 1rem;
 `;
 
 const EnglishWord = styled.div`
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 0.5rem;
 `;
 
 const KoreanWord = styled(fontDefault)`
@@ -74,10 +43,14 @@ const KoreanWord = styled(fontDefault)`
 `;
 
 const HoverSection = styled.div`
-  height: 1.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+`;
+
+const BtnGroup = styled.div`
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+  display: flex;
+  flex-direction: row;
   align-items: center;
 `;
 
@@ -89,15 +62,15 @@ const LinkTag = styled.a`
   color: ${styles.colors['white']};
 
   :visited {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: ${styles.colors['white']};
   }
   :hover {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: ${styles.colors['white']};
   }
   :focus {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: ${styles.colors['white']};
   }
 `;
@@ -129,38 +102,115 @@ const ArchiveBtn = styled.button`
 `;
 
 const DeleteBtn = styled.img`
-  width: 14px;
-  height: 14px;
+  width: 17px;
+  height: 17px;
   &:hover {
     cursor: pointer;
   }
 `;
 
-const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
-  const iHoverYou = () => {
-    console.log('후버씨');
-  };
-  const iClickYou = () => {
-    console.log('클릭씨');
-  };
+const ColorPicker = styled.div`
+  display: flex;
+
+  position: relative;
+  background-color: transparent;
+  top: 0;
+  right: 0;
+`;
+
+const Color = styled.div`
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  margin-right: 3px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background-color: ${(props) => styles.colors[`${props.color}`]};
+  visibility: ${(props) => (props.visible ? 'visible' : 'hidden')};
+`;
+
+const Colors = ({ color, showColor, changeColor }) => {
+  const colorArr = ['green', 'purple', 'gold'];
+  const removeIndex = colorArr.indexOf(color);
+  colorArr.splice(removeIndex, 1);
+
   return (
-    <Wrapper color={wordInfo.color} idx={idx} col={col} cnt={columnCnt}>
+    <>
+      {colorArr.map((color, index) => (
+        <Color
+          key={index}
+          color={color}
+          visible={showColor}
+          onClick={() => changeColor(color)}
+        />
+      ))}
+    </>
+  );
+};
+
+const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
+  const [showPicker, setShowPicker] = useState(false);
+  const [color, setColor] = useState(wordInfo.color);
+  const [isVisibleButtons, setIsVisibleButtons] = useState(false);
+
+  const handleHover = (e) => {
+    if (e.type === 'mouseenter') setShowPicker(true);
+    else if (e.type === 'mouseleave') setShowPicker(false);
+  };
+
+  const changeColor = (color) => {
+    setColor(color);
+  };
+
+  const handleArchive = (e) => {
+    console.log(e.type);
+    if (e.type === 'mouseenter') setIsVisibleButtons(true);
+    if (e.type === 'mouseleave') setIsVisibleButtons(false);
+  };
+
+  const submitArchive = () => {
+    alert('아카이브 했네?');
+  };
+
+  const submitRemove = () => {
+    alert('삭제를 누르다니..!');
+  };
+
+  return (
+    <Wrapper
+      color={color}
+      idx={idx}
+      col={col}
+      cnt={columnCnt}
+      onMouseEnter={handleArchive}
+      onMouseLeave={handleArchive}
+    >
       <Header>
         <EnglishWord>{wordInfo.english}</EnglishWord>
-        <ColorButton onmouseover={iHoverYou} onclick={iClickYou}>
-          <SelectColor color="green" selected={true} />
-          <SelectColor color="purple" selected={false} />
-          <SelectColor color="gold" selected={false} />
-        </ColorButton>
+        <ColorPicker onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          <Colors
+            color={color}
+            showColor={showPicker}
+            changeColor={changeColor}
+          />
+          <Color
+            color={color}
+            visible
+            onClick={() => changeColor(wordInfo.color)}
+          />
+        </ColorPicker>
       </Header>
       <KoreanWord>{wordInfo.korean}</KoreanWord>
       <HoverSection>
         <LinkTag href={wordInfo.url} target="_blank">
           {regexpUrl(wordInfo.url)}
         </LinkTag>
-        <BtnGroup>
-          <ArchiveBtn>Archive</ArchiveBtn>
-          <DeleteBtn src={require('../assets/bt_delete@3x.png')} />
+        <BtnGroup visible={isVisibleButtons}>
+          <ArchiveBtn onClick={submitArchive}>Archive</ArchiveBtn>
+          <DeleteBtn
+            src={require('../assets/bt_delete@3x.png')}
+            onClick={submitRemove}
+          />
         </BtnGroup>
       </HoverSection>
     </Wrapper>
