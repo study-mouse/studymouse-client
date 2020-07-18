@@ -31,6 +31,7 @@ const Masonry = styled.div`
 `;
 
 const WordList = ({ sortedData }) => {
+  console.log('sortedData', sortedData);
   let idx = 0;
   return (
     <Wrapper>

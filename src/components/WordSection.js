@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import * as mock from '../constants/mockData';
 import WordList from './WordList';
@@ -31,20 +31,9 @@ const arrayGroupByKey = (array, key) => {
 };
 
 const WordSection = () => {
-  fetch(
-    'https://studymouse-mjung1798.endpoint.ainize.ai/api/word/DASH_BOARD?startDate=2020-01-01&endDate=2020-12-31',
-  )
-    .then((res) => {
-      console.log(res);
-    })
-    .then(function (myJson) {
-      console.log(JSON.stringify(myJson));
-    });
   return (
     <WordWrapper>
-      <WordList
-        sortedData={arrayGroupByKey(mock.mockData.datas, 'createdDate')}
-      />
+      <WordList sortedData={arrayGroupByKey([], 'createdDate')} />
     </WordWrapper>
   );
 };

@@ -3,15 +3,12 @@ import { actionType } from '../actions';
 import axios from 'axios';
 
 function getAPI() {
-  // return axios.post(`https://studymouse-mjung1798.endpoint.ainize.ai/login`);
   axios
     .get(
       `https://studymouse-mjung1798.endpoint.ainize.ai/oauth2/authorization/google`,
     )
     .then((res) => console.log(res))
     .catch((error) => console.log('error', error));
-
-  // window.location.href = `https://studymouse-mjung1798.endpoint.ainize.ai/oauth2/authorization/google`;
 }
 
 export function* getUserInfoSaga() {

@@ -14,6 +14,9 @@ export const colors = {
   little_dark_black: '#262626',
   dark_black: '#1a1a1a',
   black: '#141414',
+  grey: '#414141',
+  grey_dark: '#262626',
+  grey_light: '#414141',
 };
 
 export const fontDefault = styled.div`

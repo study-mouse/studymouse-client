@@ -4,12 +4,28 @@ import { fontDefault } from '../constants/styles';
 import * as styles from '../constants/styles';
 import { useDispatch } from 'react-redux';
 import { getUserInfoActionRequest } from '../actions';
+import GoogleLogin from 'react-google-login';
+import Axios from 'axios';
 
 const LoginPage = ({ history }) => {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(getUserInfoActionRequest());
+    // dispatch(getUserInfoActionRequest());
+  };
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    Axios.post('http://192.168.219.111:8080/api/mouse/login', {
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      picture: response.profileObj.imageUrl,
+    }).then((response) => {
+      console.log('response', response);
+      if (response.status === 200) {
+        history.push('/');
+      }
+    });
   };
   return (
     <Section>
@@ -23,16 +39,12 @@ const LoginPage = ({ history }) => {
           </TitleContent>
         </TitleContainer>
         <GoogleLoginContainer>
-          <GoogleLoginButton onClick={() => handleSubmit()}>
-            <img
-              alt="googlelogo"
-              src={
-                'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?fit=1000%2C1000&ssl=1'
-              }
-              style={{ height: 20, marginRight: 10 }}
-            />
-            SignIn with Google
-          </GoogleLoginButton>
+          <GoogleLogin
+            clientId="490989436300-gsdo4tgdmcmfl753mm475dkca70pbtrp.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
         </GoogleLoginContainer>
         <img
           alt={'logingif'}
