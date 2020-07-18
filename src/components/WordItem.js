@@ -12,11 +12,17 @@ const Wrapper = styled.div`
   margin: 1rem 1rem 1rem 0;
   border-radius: 20px;
   order: ${(props) => props.col};
-
   background-color: ${(props) =>
-    props.idx === 1
+    props.page === 'archived'
+      ? styles.colors['little_dark_black']
+      : props.idx === 1
       ? styles.colors[props.color]
       : styles.colors[`${props.color}_dark`]};
+  
+  border: ${(props) =>
+    props.page === 'archived'
+      ? `solid 2px ${styles.colors[`${props.color}_light`]}`
+      : 0};
   
   :nth-child(${(props) => props.cnt}n+${(props) => props.col}) {
     order: ${(props) => props.col}
@@ -148,7 +154,7 @@ const Colors = ({ color, showColor, changeColor }) => {
   );
 };
 
-const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
+const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [color, setColor] = useState(wordInfo.color);
   const [isVisibleButtons, setIsVisibleButtons] = useState(false);
@@ -183,21 +189,24 @@ const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
       cnt={columnCnt}
       onMouseEnter={handleArchive}
       onMouseLeave={handleArchive}
+      page={page}
     >
       <Header>
         <EnglishWord>{wordInfo.english}</EnglishWord>
-        <ColorPicker onMouseEnter={handleHover} onMouseLeave={handleHover}>
-          <Colors
-            color={color}
-            showColor={showPicker}
-            changeColor={changeColor}
-          />
-          <Color
-            color={color}
-            visible
-            onClick={() => changeColor(wordInfo.color)}
-          />
-        </ColorPicker>
+        {page === 'word' ? (
+          <ColorPicker onMouseEnter={handleHover} onMouseLeave={handleHover}>
+            <Colors
+              color={color}
+              showColor={showPicker}
+              changeColor={changeColor}
+            />
+            <Color
+              color={color}
+              visible
+              onClick={() => changeColor(wordInfo.color)}
+            />
+          </ColorPicker>
+        ) : null}
       </Header>
       <KoreanWord>{wordInfo.korean}</KoreanWord>
       <HoverSection>
