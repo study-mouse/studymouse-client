@@ -1,20 +1,30 @@
+import { createAction } from 'redux-actions';
+
 export const actionType = {
-  GET_USERINFO: '@@/user/GET_USERINFO',
-  GET_WORDLIST: '@@/word/GET_WORDLIST',
+  GET_USERINFO_REQUEST: '@@/user/GET_USERINFO/REQUEST',
+  GET_USERINFO_SUCCESS: '@@/user/GET_USERINFO/SUCCESS',
+  GET_USERINFO_FAILURE: '@@/user/GET_USERINFO/FAILURE',
+
+  GET_WORDLIST_REQUEST: '@@/word/GET_WORDLIST/REQUEST',
+  GET_WORDLIST_SUCCESS: '@@/word/GET_WORDLIST/SUCCESS',
+  GET_WORDLIST_FAILURE: '@@/word/GET_WORDLIST/FAILURE',
 };
 
-export const userActions = {};
-
-// const makeActionCreator = (actionType) => {
-//   return (payload) => ({ type: actionType, payload });
-// };
-
-export const getUserInfo = (payload) => ({
-  type: actionType.GET_USERINFO,
-  payload,
-});
-
-export const getWordList = (payload) => ({
-  type: actionType.GET_WORDLIST,
-  payload,
-});
+export const getUserInfoActionRequest = createAction(
+  actionType.GET_USERINFO_REQUEST,
+);
+export const getUserInfoActionSuccess = createAction(
+  actionType.GET_USERINFO_SUCCESS,
+);
+export const getUserInfoActionFailure = createAction(
+  actionType.GET_USERINFO_FAILURE,
+);
+export const getWordListActionRequest = createAction(
+  actionType.GET_WORDLIST_REQUEST,
+);
+export const getWordListActionSuccess = createAction(
+  actionType.GET_WORDLIST_SUCCESS,
+);
+export const getWordListActionFailure = createAction(
+  actionType.GET_WORDLIST_FAILURE,
+);

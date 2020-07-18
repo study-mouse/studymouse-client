@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { fontDefault } from '../constants/styles';
 import * as styles from '../constants/styles';
+import { useDispatch } from 'react-redux';
+import { getUserInfoActionRequest } from '../actions';
 
 const LoginPage = ({ history }) => {
+  const dispatch = useDispatch();
+
   const handleSubmit = () => {
-    alert('Google login');
-    history.push('/');
+    dispatch(getUserInfoActionRequest());
   };
   return (
     <Section>

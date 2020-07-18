@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import { actionType } from '../actions';
 import produce from 'immer';
 
@@ -13,21 +14,29 @@ const INIT_STATE = {
   },
 };
 
-const reducer = (state = INIT_STATE, action) => {
-  switch (action.type) {
-    case actionType.GET_USERINFO:
-      return produce(state, (draftState) => {
-        draftState.userInfo = action.payload;
-        return draftState;
-      });
-    case actionType.GET_WORDLIST:
-      return produce(state, (draftState) => {
-        draftState.wordList = action.payload;
-        return draftState;
-      });
-    default:
-      return state;
-  }
-};
+const reducer = combineReducers({
+  getUserInfo: (state = INIT_STATE.userInfo, action) => {
+    switch (action.type) {
+      case actionType.GET_USERINFO_REQUEST:
+        return produce(state, (draftState) => {
+          draftState = action.payload;
+          return draftState;
+        });
+      default:
+        return state;
+    }
+  },
+  getWordList: (state = INIT_STATE.wordList, action) => {
+    switch (action.type) {
+      case actionType.GET_WORDLIST_REQUEST:
+        return produce(state, (draftState) => {
+          draftState = action.payload;
+          return draftState;
+        });
+      default:
+        return state;
+    }
+  },
+});
 
 export default reducer;
