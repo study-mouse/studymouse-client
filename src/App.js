@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import WordPage from './pages/WordPage';
+import ArchivePage from './pages/ArchivePage';
 import LoginPage from './pages/LoginPage';
 import * as styles from './constants/styles';
 
@@ -20,7 +21,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route path="/" exact component={WordPage} />
-          <Route path="/archive" component={WordPage} />
+          <Route path="/archive" component={ArchivePage} />
           <Route path="/login" component={LoginPage} />
         </Switch>
       </Wrapper>
