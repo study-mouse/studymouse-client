@@ -163,7 +163,6 @@ const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
   };
 
   const handleArchive = (e) => {
-    console.log(e.type);
     if (e.type === 'mouseenter') setIsVisibleButtons(true);
     if (e.type === 'mouseleave') setIsVisibleButtons(false);
   };
