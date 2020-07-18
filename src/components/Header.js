@@ -6,6 +6,9 @@ import * as styles from '../constants/styles';
 const Navbar = styled.div`
   display: flex;
   height: 5rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
 
   background-color: ${styles.colors['dark_black']};
   border-bottom: 1px solid #333333;

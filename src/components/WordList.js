@@ -24,25 +24,27 @@ const Criteria = styled(fontDefault)`
   font-weight: bold;
 `;
 
+const Masonry = styled.div`
+  // TODO - breakpoint 잡아서 col갯수 계산하기
+  // display: flex;
+  // flex-flow: column wrap;
+`;
+
 const WordList = ({ sortedData }) => {
-  console.log(sortedData);
-  Object.entries(sortedData).forEach(([key, value]) => {
-    console.log(key);
-    console.log(value);
-  });
   let idx = 0;
   return (
     <Wrapper>
       {Object.entries(sortedData).map(([key, value]) => {
         idx++;
+
         return (
           <CriteriaSection key={key}>
             <Criteria latest={idx === 1}>{key}</Criteria>
-            <div>
+            <Masonry>
               {value.map((word) => {
                 return <WordItem wordInfo={word} key={word.id} idx={idx} />;
               })}
-            </div>
+            </Masonry>
           </CriteriaSection>
         );
       })}
