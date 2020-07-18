@@ -40,6 +40,16 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
+const SelectColor = styled.div`
+  visibility: hidden;
+  width: 12px;
+  height: 12px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background-color: ${(props) => styles.colors[`${props.color}`]};
+  margin-bottom: 4px;
+`;
+
 const ColorButton = styled.div`
   width: 12px;
   height: 12px;
@@ -48,19 +58,12 @@ const ColorButton = styled.div`
 
   :hover {
     cursor: pointer;
-    transition: all 0.7s ease-in-out;
     bottom: 100px;
+    visibility: hidden;
   }
-`;
-
-const SelectColor = styled.div`
-  width: 12px;
-  height: 12px;
-  border-radius: 8px;
-  border: 1px solid white;
-  background-color: ${(props) => styles.colors[`${props.color}`]};
-  opacity: 0.5;
-  margin-bottom: 4px;
+  &:hover ${SelectColor} {
+    visibility: visible;
+  }
 `;
 
 const EnglishWord = styled.div`
@@ -86,8 +89,10 @@ const HoverSection = styled.div`
 const LinkTag = styled.a`
   font-size: 12px;
   text-overflow: ellipsis;
-  width: 5rem;
+  width: 116px;
   text-decoration: none;
+  color: white;
+
   :visited {
     text-decoration: none;
     color: ${styles.colors['white']};
@@ -137,14 +142,20 @@ const DeleteBtn = styled.img`
 `;
 
 const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
+  const iHoverYou = () => {
+    console.log('후버씨');
+  };
+  const iClickYou = () => {
+    console.log('클릭씨');
+  };
   return (
     <Wrapper color={wordInfo.color} idx={idx} col={col} cnt={columnCnt}>
       <Header>
         <EnglishWord>{wordInfo.english}</EnglishWord>
-        <ColorButton>
-          <SelectColor color="green" />
-          <SelectColor color="purple" />
-          <SelectColor color="gold" />
+        <ColorButton onmouseover={iHoverYou} onclick={iClickYou}>
+          <SelectColor color="green" selected={true} />
+          <SelectColor color="purple" selected={false} />
+          <SelectColor color="gold" selected={false} />
         </ColorButton>
       </Header>
       <KoreanWord>{wordInfo.korean}</KoreanWord>

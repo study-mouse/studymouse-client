@@ -31,15 +31,15 @@ const arrayGroupByKey = (array, key) => {
 };
 
 const WordSection = () => {
-  // fetch(
-  //   'https://cors-anywhere.herokuapp.com/https://endic.naver.com/searchAssistDict.nhn?query=apple',
-  // )
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .then(function (myJson) {
-  //     console.log(JSON.stringify(myJson));
-  //   });
+  fetch(
+    'https://studymouse-mjung1798.endpoint.ainize.ai/api/word/DASH_BOARD?startDate=2020-01-01&endDate=2020-12-31',
+  )
+    .then((res) => {
+      console.log(res);
+    })
+    .then(function (myJson) {
+      console.log(JSON.stringify(myJson));
+    });
   return (
     <WordWrapper>
       <WordList
