@@ -82,8 +82,8 @@ const LinkTag = styled.a`
 `;
 
 const ArchiveBtn = styled.button`
-  width: 3.6rem;
-  height: 1.2rem;
+  width: ${(props) => (props.page === 'word' ? '52px' : '64px')};
+  height: 18px;
   font-size: 12px;
   margin-right: 5px;
 
@@ -214,7 +214,9 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
           {regexpUrl(wordInfo.url)}
         </LinkTag>
         <BtnGroup visible={isVisibleButtons}>
-          <ArchiveBtn onClick={submitArchive}>Archive</ArchiveBtn>
+          <ArchiveBtn onClick={submitArchive} page={page}>
+            {page === 'word' ? 'Archive' : 'Unarchive'}
+          </ArchiveBtn>
           <DeleteBtn
             src={require('../assets/bt_delete@3x.png')}
             onClick={submitRemove}

@@ -5,7 +5,7 @@ import * as styles from '../constants/styles';
 import { useDispatch } from 'react-redux';
 import { getUserInfoActionRequest } from '../actions';
 import GoogleLogin from 'react-google-login';
-import Axios from 'axios';
+import axios from 'axios';
 
 const LoginPage = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,17 +15,19 @@ const LoginPage = ({ history }) => {
   };
 
   const responseGoogle = (response) => {
-    console.log(response);
-    Axios.post('http://192.168.219.111:8080/api/mouse/login', {
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-      picture: response.profileObj.imageUrl,
-    }).then((response) => {
-      console.log('response', response);
-      if (response.status === 200) {
-        history.push('/');
-      }
-    });
+    console.log('r', response);
+    axios
+      .post('http://192.168.219.111:8080/api/mouse/login', {
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+        picture: response.profileObj.imageUrl,
+      })
+      .then((response) => {
+        console.log('response', response);
+        if (response.status === 200) {
+          history.push('/');
+        }
+      });
   };
   return (
     <Section>

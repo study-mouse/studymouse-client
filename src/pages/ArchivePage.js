@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import WordList from '../components/WordList';
 import * as mock from '../constants/mockData';
+import axios from 'axios';
 
 const ArchivePage = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData().then((data) => setData(data));
+  }, []);
+
   const arrayGroupByKey = (array, key) => {
     const groupedObj = array.reduce((result, curValue) => {
       (result[curValue[key]] = result[curValue[key]] || []).push(curValue);
@@ -19,13 +26,24 @@ const ArchivePage = () => {
       });
     return ordered;
   };
+
+  const fetchData = async () => {
+    const response = await axios.get(
+      'https://studymouse-mjung1798.endpoint.ainize.ai/api/word/ARCHIVE_BOARD?startDate=2020-01-01&endDate=2020-12-31',
+    );
+    return response.data.response;
+  };
   return (
     <Section>
       <WordWrapper>
-        <WordList
-          sortedData={arrayGroupByKey(mock.mockData.datas, 'createdDate')}
-          page="archived"
-        />
+        {data.length !== 0 ? (
+          <WordList
+            sortedData={arrayGroupByKey(data, 'createdDate')}
+            page="archived"
+          />
+        ) : (
+          <EmptyIcon src={require('../assets/archive-empty@3x.png')} />
+        )}
       </WordWrapper>
     </Section>
   );
@@ -33,6 +51,7 @@ const ArchivePage = () => {
 
 const Section = styled.div`
   display: flex;
+  min-height: 100vh;
 `;
 const WordWrapper = styled.div`
   margin-top: 5rem;
@@ -43,6 +62,12 @@ const WordWrapper = styled.div`
   padding: 1rem 3rem;
 
   background-color: #1a1a1a;
+`;
+
+const EmptyIcon = styled.img`
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
 `;
 
 export default ArchivePage;

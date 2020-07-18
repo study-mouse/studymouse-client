@@ -29,17 +29,22 @@ const WordPage = () => {
 
   const fetchData = async () => {
     const response = await axios.get(
-      'http://192.168.219.111:8080/api/word/DASH_BOARD?startDate=2020-01-01&endDate=2020-12-31',
+      'https://studymouse-mjung1798.endpoint.ainize.ai/api/word/DASH_BOARD?startDate=2020-01-01&endDate=2020-12-31',
     );
-    console.log('response', response);
-
     return response.data.response;
   };
 
   return (
     <Section>
       <WordWrapper>
-        <WordList sortedData={arrayGroupByKey(data, 'createdDate')} />
+        {data.length !== 0 ? (
+          <WordList
+            sortedData={arrayGroupByKey(data, 'createdDate')}
+            page={'word'}
+          />
+        ) : (
+          <EmptyIcon src={require('../assets/archive-empty@3x.png')} />
+        )}
       </WordWrapper>
     </Section>
   );
@@ -47,7 +52,7 @@ const WordPage = () => {
 
 const Section = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 `;
 const WordWrapper = styled.div`
   margin-top: 5rem;
@@ -58,6 +63,12 @@ const WordWrapper = styled.div`
   padding: 1rem 3rem;
 
   background-color: #1a1a1a;
+`;
+
+const EmptyIcon = styled.img`
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
 `;
 
 export default WordPage;
