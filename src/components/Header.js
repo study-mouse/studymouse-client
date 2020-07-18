@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fontDefault } from '../constants/styles';
 import * as styles from '../constants/styles';
 
 const Navbar = styled.div`
@@ -23,7 +22,8 @@ const Logo = styled.img`
   height: 80%;
 `;
 
-const PageName = styled(fontDefault)`
+const PageName = styled.a`
+  cursor: pointer;
   margin: auto 2rem;
   font-size: 20px;
   font-weight: 900;
@@ -34,9 +34,13 @@ const PageName = styled(fontDefault)`
 
 const Header = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const [isArchivePage, setIsArchivePage] = useState(false);
+
   useEffect(() => {
-    if (document.URL.split('/').includes('login')) setIsLogin(false);
-  });
+    const currentUrl = document.URL.split('/');
+    if (currentUrl.includes('login')) setIsLogin(false);
+    if (currentUrl.includes('archive')) setIsArchivePage(true);
+  }, []);
 
   return (
     <Navbar>
@@ -45,8 +49,12 @@ const Header = () => {
       </LogoContainer>
       {isLogin && (
         <>
-          <PageName selected>Word</PageName>
-          <PageName>Archived</PageName>
+          <PageName href="/" selected={!isArchivePage}>
+            Word
+          </PageName>
+          <PageName href="/archive" selected={isArchivePage}>
+            Archived
+          </PageName>
         </>
       )}
     </Navbar>
