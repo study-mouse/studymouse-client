@@ -24,17 +24,13 @@ const Criteria = styled(fontDefault)`
   font-weight: bold;
 `;
 
-const Masonry = styled.div` // TODO - breakpoint 잡아서 col갯수 계산하기
+const Masonry = styled.div`
+  // TODO - breakpoint 잡아서 col갯수 계산하기
   // display: flex;
   // flex-flow: column wrap;
 `;
 
 const WordList = ({ sortedData }) => {
-  console.log(sortedData);
-  Object.entries(sortedData).forEach(([key, value]) => {
-    console.log(key);
-    console.log(value);
-  });
   let idx = 0;
   return (
     <Wrapper>

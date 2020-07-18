@@ -4,6 +4,11 @@ import * as styles from '../constants/styles';
 import { fontDefault } from '../constants/styles';
 import { regexpUrl } from '../utils/index';
 
+const BtnGroup = styled.div`
+  display: none;
+  align-items: center;
+`;
+
 const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
@@ -12,11 +17,50 @@ const Wrapper = styled.div`
   height: fit-content;
   margin: 1rem 1rem 1rem 0;
   border-radius: 20px;
+  order: ${(props) => props.col};
 
   background-color: ${(props) =>
     props.idx === 1
       ? styles.colors[props.color]
       : styles.colors[`${props.color}_dark`]};
+  
+  :nth-child(${(props) => props.cnt}n+${(props) => props.col}) {
+    order: ${(props) => props.col}
+  };
+  
+  &:hover ${BtnGroup} {
+    display: flex;
+  }
+}
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const ColorButton = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 8px;
+  border: 1px solid white;
+
+  :hover {
+    cursor: pointer;
+    transition: all 0.7s ease-in-out;
+    bottom: 100px;
+  }
+`;
+
+const SelectColor = styled.div`
+  width: 12px;
+  height: 12px;
+  border-radius: 8px;
+  border: 1px solid white;
+  background-color: ${(props) => styles.colors[`${props.color}`]};
+  opacity: 0.5;
+  margin-bottom: 4px;
 `;
 
 const EnglishWord = styled.div`
@@ -92,15 +136,17 @@ const DeleteBtn = styled.img`
   }
 `;
 
-const BtnGroup = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const WordItem = ({ wordInfo, idx }) => {
+const WordItem = ({ wordInfo, idx, col, columnCnt }) => {
   return (
-    <Wrapper color={wordInfo.color} idx={idx}>
-      <EnglishWord>{wordInfo.english}</EnglishWord>
+    <Wrapper color={wordInfo.color} idx={idx} col={col} cnt={columnCnt}>
+      <Header>
+        <EnglishWord>{wordInfo.english}</EnglishWord>
+        <ColorButton>
+          <SelectColor color="green" />
+          <SelectColor color="purple" />
+          <SelectColor color="gold" />
+        </ColorButton>
+      </Header>
       <KoreanWord>{wordInfo.korean}</KoreanWord>
       <HoverSection>
         <LinkTag href={wordInfo.url} target="_blank">
