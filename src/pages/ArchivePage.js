@@ -24,6 +24,7 @@ const ArchivePage = () => {
       <WordWrapper>
         <WordList
           sortedData={arrayGroupByKey(mock.mockData.datas, 'createdDate')}
+          page="archived"
         />
       </WordWrapper>
     </Section>

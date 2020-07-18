@@ -24,6 +24,7 @@ const WordPage = () => {
       <WordWrapper>
         <WordList
           sortedData={arrayGroupByKey(mock.mockData.datas, 'createdDate')}
+          page="word"
         />
       </WordWrapper>
     </Section>

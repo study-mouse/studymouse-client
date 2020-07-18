@@ -30,7 +30,7 @@ const Masonry = styled.div`
   flex-flow: column wrap; */
 `;
 
-const WordList = ({ sortedData }) => {
+const WordList = ({ sortedData, page }) => {
   let idx = 0;
   return (
     <Wrapper>
@@ -42,7 +42,14 @@ const WordList = ({ sortedData }) => {
             <Criteria latest={idx === 1}>{key}</Criteria>
             <Masonry>
               {value.map((word) => {
-                return <WordItem wordInfo={word} key={word.id} idx={idx} />;
+                return (
+                  <WordItem
+                    wordInfo={word}
+                    key={word.id}
+                    idx={idx}
+                    page={page}
+                  />
+                );
               })}
             </Masonry>
           </CriteriaSection>
