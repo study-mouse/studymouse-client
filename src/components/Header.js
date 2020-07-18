@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { fontDefault } from '../constants/styles';
 import * as styles from '../constants/styles';
 
 const Navbar = styled.div`
@@ -8,23 +7,23 @@ const Navbar = styled.div`
   height: 5rem;
   position: fixed;
   width: 100%;
-  top: 0;
 
   background-color: ${styles.colors['dark_black']};
   border-bottom: 1px solid #333333;
 `;
 
-const ServiceName = styled(fontDefault)`
+const LogoContainer = styled.a`
   display: flex;
   align-items: center;
-  margin: 0 5rem 0 3rem;
-
-  font-size: 20px;
-  font-weight: 900;
-  color: white;
+  margin: 0 30px;
+  width: 240px;
+`;
+const Logo = styled.img`
+  height: 80%;
 `;
 
-const PageName = styled(fontDefault)`
+const PageName = styled.a`
+  cursor: pointer;
   margin: auto 2rem;
   font-size: 20px;
   font-weight: 900;
@@ -34,11 +33,30 @@ const PageName = styled(fontDefault)`
 `;
 
 const Header = () => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isArchivePage, setIsArchivePage] = useState(false);
+
+  useEffect(() => {
+    const currentUrl = document.URL.split('/');
+    if (currentUrl.includes('login')) setIsLogin(false);
+    if (currentUrl.includes('archive')) setIsArchivePage(true);
+  }, []);
+
   return (
     <Navbar>
-      <ServiceName>스터디마우스</ServiceName>
-      <PageName selected={true}>Word</PageName>
-      <PageName selected={false}>Archived</PageName>
+      <LogoContainer href="/">
+        <Logo src={require('../assets/logo.png')} />
+      </LogoContainer>
+      {isLogin && (
+        <>
+          <PageName href="/" selected={!isArchivePage}>
+            Word
+          </PageName>
+          <PageName href="/archive" selected={isArchivePage}>
+            Archived
+          </PageName>
+        </>
+      )}
     </Navbar>
   );
 };
