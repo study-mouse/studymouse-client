@@ -26,7 +26,7 @@ StudyMouse는 영어 단어 학습을 쉽고 빠르게 도와주는 단어장 �
 
 ### 어플리케이션 실행 및 빌드
 ```
-// 어플리케이션 실드행
+// 어플리케이션 실행
 git clone https://github.com/study-mouse/studymouse-client.git
 
 npm install
@@ -45,5 +45,5 @@ docker run -p 80:80 -d owen/studymouse-frontend
 - React
 - redux
 - redux-saga
-- styled-component
+- styled-components
 - axios
