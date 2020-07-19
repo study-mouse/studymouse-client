@@ -199,8 +199,8 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     alert('아카이브 했네?');
     console.log(wordInfo);
     const res = await axios({
-      method: 'PUT',
-      url: `http://192.168.219.111:8080/api/word/${wordInfo.id}`,
+      method: 'POST',
+      url: `http://192.168.219.111:8080/api/word/archive/${wordInfo.id}`,
       headers: {
         'Content-Type': 'application/json',
       },
