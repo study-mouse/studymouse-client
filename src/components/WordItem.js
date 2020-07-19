@@ -52,6 +52,7 @@ const KoreanWord = styled(fontDefault)`
 const HoverSection = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const BtnGroup = styled.div`
