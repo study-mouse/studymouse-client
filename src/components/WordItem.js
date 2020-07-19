@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: column;
   padding: 15px 16px;
-  width: 12rem;
+  width: 15rem;
   margin: 1rem 1rem 1rem 0;
   border-radius: 20px;
   order: ${(props) => props.col};
@@ -154,11 +154,20 @@ const Colors = ({ color, showColor, changeColor }) => {
   );
 };
 
+const DescriptionBox = styled.div`
+  padding: 0 10px;
+`;
+
+const Pos = styled.div`
+  display: inline;
+  color: #888;
+  margin-right: 5px;
+`;
+
 const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
   const [showPicker, setShowPicker] = useState(false);
   const [color, setColor] = useState(wordInfo.color);
   const [isVisibleButtons, setIsVisibleButtons] = useState(false);
-
   const handleHover = (e) => {
     if (e.type === 'mouseenter') setShowPicker(true);
     else if (e.type === 'mouseleave') setShowPicker(false);
@@ -209,6 +218,14 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
         ) : null}
       </Header>
       <KoreanWord>{wordInfo.korean}</KoreanWord>
+      <DescriptionBox>
+        {wordInfo.description.map((desc, index) => (
+          <KoreanWord key={index}>
+            {desc.partOfSpeech && <Pos>{desc.partOfSpeech}</Pos>}
+            {desc.mean}
+          </KoreanWord>
+        ))}
+      </DescriptionBox>
       <HoverSection>
         <LinkTag href={wordInfo.url} target="_blank">
           {regexpUrl(wordInfo.url)}
