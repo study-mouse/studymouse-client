@@ -179,7 +179,7 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     console.log(wordInfo);
     const res = await axios({
       method: 'PUT',
-      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      url: `http://192.168.219.111:8080/api/word/${wordInfo.id}`,
       data: {
         color: color,
       },
@@ -199,10 +199,10 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     alert('아카이브 했네?');
     console.log(wordInfo);
     const res = await axios({
-      method: 'PATCH',
-      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      method: 'PUT',
+      url: `http://192.168.219.111:8080/api/word/${wordInfo.id}`,
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
     });
     console.log(res);
@@ -213,9 +213,9 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     console.log(wordInfo);
     const res = await axios({
       method: 'DELETE',
-      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      url: `http://192.168.219.111:8080/api/word/${wordInfo.id}`,
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
     });
     console.log(res);
