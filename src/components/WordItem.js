@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import * as styles from '../constants/styles';
 import { fontDefault } from '../constants/styles';
 import { regexpUrl } from '../utils/index';
+import axios from 'axios';
 
 const Wrapper = styled.div`
   display: inline-flex;
@@ -164,8 +165,20 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     else if (e.type === 'mouseleave') setShowPicker(false);
   };
 
-  const changeColor = (color) => {
+  const changeColor = async (color) => {
     setColor(color);
+    console.log(wordInfo);
+    const res = await axios({
+      method: 'PUT',
+      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      data: {
+        color: color,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(res);
   };
 
   const handleArchive = (e) => {
@@ -173,12 +186,30 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
     if (e.type === 'mouseleave') setIsVisibleButtons(false);
   };
 
-  const submitArchive = () => {
+  const submitArchive = async () => {
     alert('아카이브 했네?');
+    console.log(wordInfo);
+    const res = await axios({
+      method: 'PATCH',
+      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    console.log(res);
   };
 
-  const submitRemove = () => {
-    alert('삭제를 누르다니..!');
+  const submitRemove = async () => {
+    alert('지웠네?');
+    console.log(wordInfo);
+    const res = await axios({
+      method: 'DELETE',
+      url: `https://studymouse-mjung1798.endpoint.ainize.ai/api/word/${wordInfo.id}`,
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    console.log(res);
   };
 
   return (
