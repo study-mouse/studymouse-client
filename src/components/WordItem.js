@@ -197,7 +197,11 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
   };
 
   const submitArchive = async () => {
-    alert('아카이브 했네?');
+    if (page === 'word') {
+      alert('아카이브 했네?(Archive)');
+    } else {
+      alert('아카이브 지웠네?(Unarchive)');
+    }
     console.log(wordInfo);
     const res = await axios({
       method: 'POST',
@@ -210,7 +214,7 @@ const WordItem = ({ wordInfo, idx, col, columnCnt, page }) => {
   };
 
   const submitRemove = async () => {
-    alert('지웠네?');
+    alert('지웠네?(Delete)');
     console.log(wordInfo);
     const res = await axios({
       method: 'DELETE',
